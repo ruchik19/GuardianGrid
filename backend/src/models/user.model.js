@@ -37,6 +37,10 @@ const userSchema = new Schema(
             lat: {type: Number},
             long: {type: Number}
         },
+        contact: {
+            type: String,
+            required: true,
+        },
         refreshToken: {
             type: String
         }

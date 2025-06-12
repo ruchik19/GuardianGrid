@@ -16,7 +16,7 @@ const createEmergencyContact = asyncHandler(async (req, res) => {
     const { organization, phoneNumber, category, regions } = req.body;
 
     if ( !organization || !phoneNumber || !category || !regions || regions.length === 0) {
-        throw new ApiError(400, "Name, organization, phone number, category, and regions are required.");
+        throw new ApiError(400, " organization, phone number, category, and regions are required.");
     }
 
     const processedRegions = regions.map(r => r.toLowerCase());

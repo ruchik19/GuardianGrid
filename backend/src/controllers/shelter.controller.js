@@ -44,11 +44,13 @@ const addnewShelter = asyncHandler(async(req,res)=>{
     const shelter = await Shelter.create({
         name,
         description,
+        shelterfor,
         shelterType: shelterType.toLowerCase(),
         calamityTypes: calamityTypes ? calamityTypes.map(c => c.toLowerCase()) : [], 
         location: {
             type: 'Point',
-            coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)]
+            coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)],
+            address: location.address
         },
         capacity,
         occupancy: occupancy || 0, 

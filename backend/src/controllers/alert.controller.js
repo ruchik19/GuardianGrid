@@ -32,7 +32,7 @@ const sendAlert = asyncHandler(async(req,res)=> {
         severity: severity ? severity.toLowerCase() : 'medium', 
         targetRegions: processedTargetRegions,
         location: location ? { type: 'Point', coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)] } : undefined,
-        issuedBy: req.user._id, 
+        createdBy: req.user._id, 
         isActive: true, 
     });
 

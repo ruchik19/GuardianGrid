@@ -56,7 +56,7 @@ app.use("/api/v2/users", userRouter)
 app.use("/api/v2/alerts", alertRouter)
 app.use("/api/v2/shelters",shelterRouter)
 app.use("/api/v2/contacts",emergencyContactRouter)
-app.use("api/v2/past-wars",pastwarsRouter)
+app.use("/api/v2/pastwars",pastwarsRouter)
 
 
 export { app,server,io };

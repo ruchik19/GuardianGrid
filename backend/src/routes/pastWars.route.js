@@ -3,5 +3,5 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { getWarDetails } from "../controllers/pastWars.controllers.js";
 
 const router = Router();
-router.route("/").get(verifyJWT, getWarDetails);
+router.route("/getwar").get(verifyJWT, getWarDetails);
 export default router;

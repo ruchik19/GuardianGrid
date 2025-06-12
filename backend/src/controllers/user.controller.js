@@ -36,7 +36,7 @@ const registerUser = asyncHandler(async (req,res) => {
     }
     const existedUser = await User.findOne({ 
         $or: [{ email: email.toLowerCase() },{ contact }]
-    })        
+    }) ;       
     if (existedUser) {
         throw new ApiError(409, "User with email or contact already exists")
     }
@@ -48,12 +48,12 @@ const registerUser = asyncHandler(async (req,res) => {
         contact,
         role: role.toLowerCase(),
     };
-    if (role === 'civilian') {
+   
         userData.location = {
             type: 'Point',
             coordinates: [parseFloat(longitude), parseFloat(latitude)]
         };
-    }
+    
     const user = await User.create(userData);
     const createdUser = await User.findById(user._id).select(     
         "-password -refreshToken"

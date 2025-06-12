@@ -10,7 +10,7 @@ const contactSchema = new Schema(
             trim: true,
             unique: true,
         },
-        organisation : {
+        organization : {
             type: String,
             required: true,
             trim: true
@@ -18,7 +18,7 @@ const contactSchema = new Schema(
         category: {
             type: String,
             required: true,
-            enum: ['Police', 'Ambulance', 'Fire', 'Disaster Relief', 'Other'],
+            enum: ['police', 'ambulance', 'fire', 'disaster relief', 'other'],
             lowercase: true,
         },
         regions: [

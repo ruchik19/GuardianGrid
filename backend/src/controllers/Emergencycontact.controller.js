@@ -1,6 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
-import { EmergencyContact } from "../models/emergencyContact.model.js";
+import { EmergencyContact } from "../models/Emergencycontact.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 let io = null;

@@ -40,4 +40,4 @@ const contactSchema = new Schema(
     }
 )
 
-export const Contact = mongoose.model('Contact',contactSchema);
+export const EmergencyContact = mongoose.model('Contact',contactSchema);

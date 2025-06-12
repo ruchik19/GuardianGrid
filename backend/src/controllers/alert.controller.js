@@ -29,11 +29,11 @@ const sendAlert = asyncHandler(async(req,res)=> {
         title,
         message,
         type: type.toLowerCase(),
-        severity: severity ? severity.toLowerCase() : 'medium', // Default to medium
+        severity: severity ? severity.toLowerCase() : 'medium', 
         targetRegions: processedTargetRegions,
         location: location ? { type: 'Point', coordinates: [parseFloat(location.longitude), parseFloat(location.latitude)] } : undefined,
-        issuedBy: req.user._id, // User from verifyJWT middleware
-        isActive: true, // Default to active upon creation
+        issuedBy: req.user._id, 
+        isActive: true, 
     });
 
     if (io) {

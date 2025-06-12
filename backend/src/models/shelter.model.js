@@ -12,7 +12,12 @@ const shelterSchema = new Schema(
             coordinates:{
                 type: [Number],
                 required: true
-            }
+            },
+            address: {
+                type: String,
+                required: true, 
+                trim: true,
+            },
         },
         name: {
             type: String,

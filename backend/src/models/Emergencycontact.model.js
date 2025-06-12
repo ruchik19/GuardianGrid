@@ -1,35 +1,27 @@
-//alert model
+//contact model
 
 import mongoose, { Schema } from "mongoose";
 
-const alertSchema = new Schema(
+const contactSchema = new Schema(
     {
-        title: {
+        phoneNumber: {
             type: String,
             required: true,
             trim: true,
-            minlength: 5,
-            maxlength: 100,
+            unique: true,
         },
-        type: {
-            type: String,
-            enum: ['war', 'calamity','drill','other'],
-            required: true,
-            lowercase: true,
-        },
-        message : {
-            type: String,
-            trim: true,
-            required: true
-        },
-        severity: {
+        organisation : {
             type: String,
             required: true,
-            enum: ['low', 'medium', 'high', 'critical'],
-            default: 'medium',
+            trim: true
+        },
+        category: {
+            type: String,
+            required: true,
+            enum: ['Police', 'Ambulance', 'Fire', 'Disaster Relief', 'Other'],
             lowercase: true,
         },
-        targetRegions: [
+        regions: [
             {
                 type: String,
                 required: true,
@@ -37,11 +29,7 @@ const alertSchema = new Schema(
                 lowercase: true,
             },
         ],
-        isActive: {
-            type: Boolean,
-            default: true,
-        },
-        createdBy: {
+        updatedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
@@ -52,4 +40,4 @@ const alertSchema = new Schema(
     }
 )
 
-export const Alert = mongoose.model('Alert', alertSchema);
+export const Contact = mongoose.model('Contact',contactSchema);

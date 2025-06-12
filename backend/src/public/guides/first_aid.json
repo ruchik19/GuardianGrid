@@ -1,0 +1,30 @@
+{
+    "title": "Comprehensive First Aid Guide",
+    "category": "first_aid",
+    "introduction": "Essential first aid knowledge for various injuries and medical emergencies .",
+    "sections": [
+        {
+            "heading": "Basic Wound Care",
+            "content": "Clean minor cuts with soap and water. Apply antiseptic and a sterile bandage. For deep wounds, apply direct pressure and seek immediate medical help.",
+            "images": ["/assets/first_aid_wound.png"],
+            "videos": ["https://www.youtube.com/watch?v=AhANvBB9hz0"]
+        },
+        {
+            "heading": "Fractures and Sprains",
+            "content": "Immobilize the affected limb. Apply ice packs for swelling. Do not try to realign broken bones. Seek professional medical attention.",
+            "videos": ["https://example.com/videos/fracture_splint.mp4"]
+        },
+        {
+            "heading": "Burns (Thermal and Chemical)",
+            "content": "Cool burns with cool (not cold) running water for 10-20 minutes. Do not apply ice. For chemical burns, flush with plenty of water. Cover with sterile, non-fluffy dressing.",
+            "tips": ["Remove jewelry", "Don't break blisters"],
+            "videos": ["https://www.youtube.com/watch?v=JwlSXhSg69A"]
+        },
+        {
+            "heading": "Controlling Bleeding: ",
+            "content": " Apply direct pressure to the wound with a clean cloth or gauze until the bleeding stops. If the bleeding is severe, elevate the injured limb above the heart level. ",
+            "videos": ["https://www.youtube.com/watch?v=NxO5LvgqZe0"]
+        }
+    ],
+    "disclaimer": "This guide is for informational purposes only and does not replace professional medical advice."
+}

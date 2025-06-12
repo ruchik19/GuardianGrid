@@ -1,6 +1,9 @@
+//user model
+
 import mongoose,{Schema} from "mongoose";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import validator from "validator";
 
 const userSchema = new Schema(
     {
@@ -16,6 +19,7 @@ const userSchema = new Schema(
             trim: true,
             index: true,
             lowercase: true,
+            validate : [validator.isEmail, "Provide a valid email"],
             unique: true
         },
         password: {
@@ -24,18 +28,27 @@ const userSchema = new Schema(
         },
         region: {
             type: String,
+            lowercase: true,
             required: [true, "Your region is required"],
             trim: true,
             index: true
         },
         role: {
             type: String,
-            enum: ["armyOfficial","civilian"],
+            enum: ["armyofficial","civilian"],
             required: true,
         },
         location: {
-            lat: {type: Number},
-            long: {type: Number}
+            type: {
+                type: String,
+                enum: ['Point'],
+                default: 'Point',
+                required: function() { return this.role === 'civilian'; } 
+            },
+            coordinates: { 
+                type: [Number],
+                required: function() { return this.role === 'civilian'; } 
+            }
         },
         contact: {
             type: String,
@@ -90,5 +103,5 @@ userSchema.methods.generateRefreshToken = function(){
         }
     )
 }
-
+userSchema.index({location:'2dsphere'})
 export const User = mongoose.model("User",userSchema)

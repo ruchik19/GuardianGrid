@@ -1,0 +1,27 @@
+{
+    "title": "Managing Food & Water During Crises",
+    "category": "food_water_shortage",
+    "introduction": "Strategies for conserving and sourcing food and water when supplies are scarce during natural calamities or war.",
+    "sections": [
+        {
+            "heading": "Water Conservation and Purification",
+            "content": "Water is paramount for survival. Ration carefully. Collect rainwater. Learn purification methods like boiling (for 1 minute rapidly), using water purification tablets, or a portable filter. Avoid drinking contaminated water.",
+            "tips": [
+                {"title": "Boiling", "details": "Boil vigorously for 1 minute to kill most pathogens."},
+                {"title": "Tablets", "details": "Follow manufacturer's instructions. Allow contact time."},
+                {"title": "Filtering", "details": "Use cloth, sand, charcoal to remove sediment before boiling/treating."}
+            ],
+            "warnings": ["Do not drink from stagnant sources without purification.", "Avoid consuming urine or seawater."]
+        },
+        {
+            "heading": "Food Rationing and Foraging",
+            "content": "Prioritize high-calorie, non-perishable foods. Eat small, frequent meals to conserve energy. Foraging for wild edibles should only be done if you are 100% certain of identification, as many plants are poisonous.",
+            "food_types": [
+                {"type": "Recommended", "items": ["Canned goods", "Dried fruits/nuts", "Energy bars", "Peanut butter"]},
+                {"type": "Avoid", "items": ["Foods requiring refrigeration", "Salty snacks (increase thirst)"]}
+            ],
+            "foraging_caution": "Never eat anything you cannot positively identify. When in doubt, go without."
+        }
+    ],
+    "storage_tips": "Store at least a 3-day supply of non-perishable food and 1 gallon of water per person per day."
+}

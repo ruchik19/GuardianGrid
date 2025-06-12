@@ -1,0 +1,130 @@
+{
+    "title": "Emergency Evacuation Procedures",
+    "category": "evacuation",
+    "introduction": "This guide covers evacuation protocols for different types of emergencies, ensuring your safety and the safety of others.",
+    "sections": [
+        {
+            "heading": "Preparing for Evacuation:",
+            "preparations": [
+                {
+                    "title": "Create a Family Plan:",
+                    "info": "Develop a plan that includes designated meeting points, alternate evacuation routes, and how to reconnect if separated. "
+                },
+                {
+                    "title": "Identify Safe Locations:",
+                    "info": "Determine where you would go in the event of an evacuation, such as a hotel, friend's house, or a designated shelter." 
+                },
+                {
+                    "title": "Have a Disaster Kit:",
+                    "info": "Assemble a kit with essential supplies like water, non-perishable food, first-aid supplies, and medication. "
+                },
+                {
+                    "title": "Practice:",
+                    "info": "Rehearse your evacuation plan, including how to access your emergency kit and how to reach your designated meeting place. "
+                },
+                {
+                    "title": "Sign Up for Notifications:",
+                    "info": "Subscribe to our webApp to receive timely warnings about potential disasters/war. "
+                }
+            ]
+            
+        },
+        {
+            "heading": "During Evacuation:",
+            "todo" : [
+                {
+                    "title": "Leave Early",
+                    "info": " Evacuate as soon as directed by authorities, avoiding congestion and potential delays."
+                },
+                {
+                    "title": "Follow Recommended Routes:",
+                    "info": "Adhere to official evacuation routes and avoid shortcuts, as they may be blocked. "
+                },
+                {
+                    "title": "Stay Informed :",
+                    "info": "Listen to radio, watch TV, or use your phone to stay updated on the latest information and weather conditions. "
+                },
+                {
+                    "title": "Take Your Kit: ",
+                    "info": "Bring your disaster supply kit with you when evacuating. "
+                },
+                {
+                    "title": "Secure Your Home: ",
+                    "info": "Lock doors and windows, secure pets, and unplug appliances if possible. "
+                },
+                {
+                    "title": "Inform Others: ",
+                    "info": " Call or email an out-of-state contact to let them know where you are going and how to reach you"
+                }
+            ]
+        },
+        {
+            "heading": "After Evacuation: ",
+            "followthese": [
+                {
+                    "title": "Assess for Damage: ",
+                    "info": "Check your home for damage and report any problems to authorities. "
+                },
+                {
+                    "title": "Check for Injuries: ",
+                    "info": "Assess for any injuries to yourself or others. "
+                },
+                {
+                    "title": "Follow Instructions: ",
+                    "info": " Listen to instructions from local authorities and follow their guidance on returning home. "
+                }
+            ]
+        },
+        {
+            "heading": "Evacuation for Natural Calamities",
+            "calamity_types": [
+                {
+                    "name": "Floods",
+                    "procedure": "Move to higher ground immediately. Turn off all utilities (electricity, gas, water). Do not walk or drive through floodwaters. Follow official evacuation routes.",
+                    "checklist": ["Grab emergency kit", "Secure home", "Notify contacts"]
+                },
+                {
+                    "name": "Earthquakes",
+                    "procedure": "During shaking, Drop, Cover, and Hold On. After shaking stops, evacuate to an open area away from buildings and power lines. Be prepared for aftershocks.",
+                    "checklist": ["Stay calm", "Avoid windows", "Use stairs if safe"]
+                },
+                {
+                    "name": "Cyclones/Storms",
+                    "procedure": "Secure loose outdoor items. Stay indoors in a safe room. If instructed to evacuate, do so immediately to designated shelters. Listen to official weather alerts.",
+                    "checklist": ["Secure property", "Stay indoors", "Evacuate if instructed"]
+                },
+                {
+                    "name": "Hurricanes",
+                    "procedure": "Seek shelter indoors and away from windows.",
+                    "checklist": ["Secure property", "Stay indoors", "Evacuate if instructed"]
+                },
+                {
+                    "name": "Wildfires",
+                    "procedure":  "Evacuate immediately and follow evacuation routes.",
+                    "checklist": ["evacuate immediately", "Stay calm"]
+                }
+            ]
+        },
+        {
+            "heading": "Evacuation during War/Conflict",
+            "war_scenarios": [
+                {
+                    "name": "Artillery/Missile Attack",
+                    "procedure": "Seek immediate cover in a sturdy building, basement, or designated shelter. Stay away from windows. If caught outdoors, lie flat on the ground. Once safe, move to a designated assembly point.",
+                    "checklist": ["Seek immediate cover", "Stay low", "Move to assembly point"]
+                },
+                {
+                    "name": "Ground Invasion/Frontline Proximity",
+                    "procedure": "If safe to do so, move away from conflict zones towards humanitarian corridors or designated safe areas. Travel in groups if possible. Avoid main roads if they are conflict areas.",
+                    "checklist": ["Move away from conflict", "Use safe routes", "Travel in groups"]
+                }
+            ],
+            "Tips for your safety and self defense ": ["keep a knife with you or in your kit","be aware of your surrounding"]
+        },
+        {
+            "heading": "General Evacuation Guidelines",
+            "content": "Always have an emergency bag ready. Know your community's evacuation plan. Inform family members of your whereabouts. Do not return to an evacuated area until authorities declare it safe.",
+            "important_notes": ["Emergency kit essential", "Know local plan", "Inform family"]
+        }
+    ]
+}

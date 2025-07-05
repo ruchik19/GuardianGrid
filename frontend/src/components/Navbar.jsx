@@ -45,9 +45,9 @@ export const Navbar = () => {
                         <li className="py-5 text-2xl"><a href="#"></a>Contact</li>
                     </ul>
                     <div className="flex space-x-10 ">
-                        <Link to="/login" className="mt-3 py-3 px-4 border-white border-2 rounded-md text-2xl">Sign In</Link>
+                        <button><Link to="/login" className="mt-3 py-3 px-4 border-white border-2 rounded-md text-2xl">Sign In</Link></button>
 
-                        <Link to="/signup" className="mt-3 bg-gradient-to-r from-slate-500 to-cyan-900 py-2 px-3 rounded-md te">Create an Account</Link>
+                        <button><Link to="/signup" className="mt-3 bg-gradient-to-r from-slate-500 to-cyan-900 py-2 px-3 rounded-md te">Create an Account</Link></button>
                     </div>
                 </div>
             )}

@@ -48,12 +48,20 @@ const registerUser = asyncHandler(async (req,res) => {
         contact,
         role: role.toLowerCase(),
     };
-   
+    if(role==='civilian'){
+        const parsedLat = parseFloat(latitude);
+        const parsedLon = parseFloat(longitude);
+
+        if (isNaN(parsedLat) || isNaN(parsedLon)) {
+            throw new ApiError(400, "Latitude and longitude must be valid numbers for civilian users.");
+        }
+
         userData.location = {
-            type: 'Point',
-            coordinates: [parseFloat(longitude), parseFloat(latitude)]
+            type: "Point",
+            coordinates: [parsedLon, parsedLat] 
         };
-    
+    }
+
     const user = await User.create(userData);
     const createdUser = await User.findById(user._id).select(     
         "-password -refreshToken"

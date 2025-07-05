@@ -3,7 +3,7 @@ import {
     createEmergencyContact,
     getEmergencyContactsByRegion,
     deleteEmergencyContact,
-    updateEmergencyContact
+    getMyContacts
 } from "../controllers/Emergencycontact.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js";
 import { verifyRole } from "../middlewares/verifyrole.middleware.js";
@@ -11,7 +11,7 @@ import { verifyRole } from "../middlewares/verifyrole.middleware.js";
 const router = Router();
 
 router.route("/create").post(verifyJWT, verifyRole("armyofficial"), createEmergencyContact);
-router.route("/update/:id").patch(verifyJWT, verifyRole("armyofficial"), updateEmergencyContact);
+router.route('/my-contacts').get(verifyJWT, verifyRole('armyofficial'), getMyContacts);
 router.route("/delete/:id").delete(verifyJWT, verifyRole("armyofficial"), deleteEmergencyContact);
 router.route("/region/:region").get(verifyJWT, getEmergencyContactsByRegion);
 

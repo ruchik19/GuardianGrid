@@ -28,7 +28,7 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log("Client connected");
-  socket.on('join_region_room', (region) => {
+  socket.on('joinRoom', (region) => {
         if (region) {
             const lowercasedRegion = region.toLowerCase();
             socket.join(lowercasedRegion);
@@ -39,6 +39,9 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("Client disconnected");
   });
+  socket.on('error', (err) => {
+    console.error('Backend: Socket error:', err.message);
+  })
 });
 
 setAlertSocket(io);
@@ -51,12 +54,17 @@ import alertRouter from "./routes/alert.route.js"
 import shelterRouter from "./routes/shelter.route.js"
 import emergencyContactRouter from "./routes/Emergencycontacts.route.js"
 import pastwarsRouter from "./routes/pastWars.route.js"
+import guidesRouter from "./routes/guide.routes.js"
+import weatherRouter from "./routes/weather.controller.js"
+
 
 app.use("/api/v2/users", userRouter) 
 app.use("/api/v2/alerts", alertRouter)
 app.use("/api/v2/shelters",shelterRouter)
 app.use("/api/v2/contacts",emergencyContactRouter)
 app.use("/api/v2/pastwars",pastwarsRouter)
+app.use("/api/v2/guides", guidesRouter)
+app.use("/api/v2/weatherdata",weatherRouter)
 
 
 export { app,server,io };

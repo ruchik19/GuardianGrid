@@ -80,7 +80,12 @@ const shelterSchema = new Schema(
         hasMedicalSupport: {
             type: Boolean,
             default: false
-        }
+        },
+        updatedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+            required: true,
+        },
     },
     {
         timestamps: true

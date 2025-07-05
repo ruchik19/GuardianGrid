@@ -38,6 +38,7 @@ const createEmergencyContact = asyncHandler(async (req, res) => {
     if (io) {
         for (const region of processedRegions) {
             io.to(region).emit('emergency_contact_updated_in_region', newContact);
+            console.log("contact added!");
         }
         io.emit('global_emergency_contact_feed_update', newContact);
     }
@@ -70,43 +71,6 @@ const getEmergencyContactsByRegion = asyncHandler(async (req, res) => {
         ));
 });
 
-const updateEmergencyContact = asyncHandler(async (req, res) => {
-    if (!io) {
-        console.error("Socket.IO instance not available in emergencyContactController!");
-    }
-    const { id } = req.params;
-    const { organization, phoneNumber, category, regions } = req.body;
-
-    const contact = await EmergencyContact.findById(id);
-    if (!contact) {
-        throw new ApiError(404, "Emergency contact not found.");
-    }
-
-    if (organization !== undefined) contact.organization = organization;
-    if (phoneNumber !== undefined) contact.phoneNumber = phoneNumber;
-    if (category !== undefined) contact.category = category.toLowerCase();
-    if (regions !== undefined) contact.regions = regions.map(r => r.toLowerCase());
-
-    contact.updatedBy = req.user._id;
-
-    const updatedContact = await contact.save();
-
-    if (io) {
-        for (const region of updatedContact.regions) {
-            io.to(region).emit('emergency_contact_updated_in_region', updatedContact);
-        }
-        io.emit('global_emergency_contact_feed_update', updatedContact);
-    }
-
-    return res
-        .status(200)
-        .json(new ApiResponse(
-            200, 
-            updatedContact, 
-            "Emergency contact updated successfully."
-        ));
-});
-
 const deleteEmergencyContact = asyncHandler(async (req, res) => {
     if (!io) {
         console.error("Socket.IO instance not available in emergencyContactController!");
@@ -136,9 +100,28 @@ const deleteEmergencyContact = asyncHandler(async (req, res) => {
         ));
 });
 
+const getMyContacts =async (req, res) => {
+    try {
+        const myContacts = await EmergencyContact.find({ updatedBy: req.user._id }).sort({ createdAt: -1 });
+
+        res.status(200).json({
+            status: 'success',
+            results: myContacts.length,
+            data: myContacts,
+        });
+    } catch (err) {
+        console.error('Error fetching my alerts:', err);
+        res.status(500).json({
+            status: 'error',
+            message: 'Failed to retrieve your alerts.',
+            error: err.message,
+        });
+    }
+};
+
 export {
     createEmergencyContact,
     getEmergencyContactsByRegion,
-    updateEmergencyContact,
     deleteEmergencyContact,
+    getMyContacts
 };

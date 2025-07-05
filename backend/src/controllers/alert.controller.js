@@ -36,11 +36,16 @@ const sendAlert = asyncHandler(async(req,res)=> {
         isActive: true, 
     });
 
-    if (io) {
+    console.log("Alert created in DB:", newAlert);
+    if (!io) {
+        console.error("Socket.IO instance (io) is null in alert.controller.js!");
+    } else {
+        console.log(`Attempting to emit new_alert_in_region for regions: ${processedTargetRegions.join(', ')}`);
         for (const region of processedTargetRegions) {
             io.to(region).emit('new_alert_in_region', newAlert);
-            console.log(`Emitting 'new_alert_in_region' to room: ${region}`);
+            console.log(`Emitted 'new_alert_in_region' to room: ${region} with alert ID: ${newAlert._id}`);
         }
+    io.emit('global_alert_feed_update', { action: 'created', alert: newAlert });
     }
     return res
     .status(201)
@@ -52,7 +57,7 @@ const sendAlert = asyncHandler(async(req,res)=> {
 })
 
 const getAlert = asyncHandler(async(req,res)=>{
-    const {region} = req.params.region
+    const region = req.params.region
     if (!region) {
         throw new ApiError(400, "Region parameter is required.");
     }
@@ -71,38 +76,42 @@ const getAlert = asyncHandler(async(req,res)=>{
 })
 
 const deactivateAlert = asyncHandler(async (req, res) => {
-    const { id } = req.params; 
+    try {
+        const { id } = req.params;
+        const { isActive } = req.body; 
 
-    const alert = await Alert.findById(id);
-
-    if (!alert) {
-        throw new ApiError(404, "Alert not found.");
-    }
-
-    if (!alert.isActive) {
-        throw new ApiError(400, "Alert is already inactive.");
-    }
-
-    alert.isActive = false;
-    await alert.save(); 
-
-    if (io) {
-        for (const region of alert.targetRegions) {
-            io.to(region).emit('alert_deactivated_in_region', { alertId: alert._id, region });
-            console.log(`Emitting 'alert_deactivated_in_region' to room: ${region}`);
+        const alert = await Alert.findById(id);
+        if (!alert) {
+            throw new ApiError(404,"alert not found .");
         }
-        io.emit('global_alert_feed_update', { alertId: alert._id, action: 'deactivated' });
+        if (alert.createdBy.toString() !== req.user._id.toString()) {
+            throw new ApiError(404,'You are not authorized to change the status of this alert.' );
+        }
+
+        alert.isActive = isActive;
+        await alert.save();
+        
+        if (io) {
+            alert.targetRegions.forEach(region => {
+                io.to(region.toLowerCase()).emit('alert_deactivated_in_region', { alertId: alert._id, isActive: alert.isActive });
+            });
+            io.to('global').emit('alert_deactivated_in_region', { alertId: alert._id, isActive: alert.isActive });
+        }
+
+        res.status(200).json({
+            status: 'success',
+            message: `Alert ${isActive ? 'activated' : 'deactivated'} successfully!`,
+            data: alert,
+        });
+    } catch (err) {
+        console.error('Error toggling alert status:', err);
+        res.status(500).json({
+            status: 'error',
+            message: 'Failed to toggle alert status.',
+            error: err.message,
+        });
     }
-
-    return res
-        .status(200)
-        .json(new ApiResponse(
-          200, 
-          alert, 
-          "Alert deactivated successfully"
-        ));
 });
-
 const deleteAlert = asyncHandler(async (req, res) => {
     const { id } = req.params; 
 
@@ -128,5 +137,24 @@ const deleteAlert = asyncHandler(async (req, res) => {
         ));
 });
 
+const getMyAlerts = asyncHandler(async (req, res) => {
+    try {
+        const myAlerts = await Alert.find({ createdBy: req.user._id }).sort({ createdAt: -1 });
 
-export { sendAlert, getAlert, deactivateAlert, deleteAlert }
+        res.status(200).json({
+            status: 'success',
+            results: myAlerts.length,
+            data: myAlerts,
+        });
+    } catch (err) {
+        console.error('Error fetching my alerts:', err);
+        res.status(500).json({
+            status: 'error',
+            message: 'Failed to retrieve your alerts.',
+            error: err.message,
+        });
+    }
+});
+
+
+export { sendAlert, getAlert, deactivateAlert, deleteAlert,getMyAlerts }

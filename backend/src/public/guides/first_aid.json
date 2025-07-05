@@ -1,3 +1,4 @@
+
 {
     "title": "Comprehensive First Aid Guide",
     "category": "first_aid",
@@ -6,7 +7,6 @@
         {
             "heading": "Basic Wound Care",
             "content": "Clean minor cuts with soap and water. Apply antiseptic and a sterile bandage. For deep wounds, apply direct pressure and seek immediate medical help.",
-            "images": ["/assets/first_aid_wound.png"],
             "videos": ["https://www.youtube.com/watch?v=AhANvBB9hz0"]
         },
         {

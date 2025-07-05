@@ -1,4 +1,3 @@
-//user model
 
 import mongoose,{Schema} from "mongoose";
 import jwt from "jsonwebtoken";
@@ -39,16 +38,20 @@ const userSchema = new Schema(
             required: true,
         },
         location: {
-            type: {
-                type: String,
-                enum: ['Point'],
-                default: 'Point',
-                required: function() { return this.role === 'civilian'; } 
-            },
-            coordinates: { 
-                type: [Number],
-                required: function() { return this.role === 'civilian'; } 
-            }
+            type: new mongoose.Schema({ 
+                type: {
+                    type: String,
+                    enum: ['Point'],
+                    default: 'Point',
+                    required: true 
+                },
+                coordinates: {
+                    type: [Number],
+                    index: '2dsphere', 
+                    required: true 
+                }
+            }),
+            required: false
         },
         contact: {
             type: String,

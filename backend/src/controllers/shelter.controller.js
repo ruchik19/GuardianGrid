@@ -180,5 +180,23 @@ const deleteShelter = asyncHandler(async (req, res) => {
         ));
 });
 
+const getMyShelters = asyncHandler(async (req, res) => {
+    try {
+        const myshelters = await Shelter.find({ updatedBy: req.user._id }).sort({ createdAt: -1 });
 
-export { addnewShelter, updateShelter,getSheltersByRegion,deleteShelter}
+        res.status(200).json({
+            status: 'success',
+            results: myshelters.length,
+            data: myshelters,
+        });
+    } catch (err) {
+        console.error('Error fetching my alerts:', err);
+        res.status(500).json({
+            status: 'error',
+            message: 'Failed to retrieve your alerts.',
+            error: err.message,
+        });
+    }
+});
+
+export { addnewShelter, updateShelter,getSheltersByRegion,deleteShelter,getMyShelters}

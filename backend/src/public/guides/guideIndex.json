@@ -1,0 +1,17 @@
+[
+  {
+    "id": "evacuation_guide",
+    "title": "Emergency Evacuation Procedures",
+    "category": "evacuation"
+  },
+  {
+    "id": "first_aid",
+    "title": "Comprehensive First Aid Guide",
+    "category": "first_aid"
+  },
+  {
+    "id": "food_water_shortage",
+    "title": "Managing Food & Water During Crises",
+    "category": "food_water_shortage"
+  }
+]

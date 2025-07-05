@@ -1,4 +1,3 @@
-//contact model
 
 import mongoose, { Schema } from "mongoose";
 

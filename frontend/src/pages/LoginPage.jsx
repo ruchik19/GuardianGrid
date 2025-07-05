@@ -14,6 +14,7 @@ import {
 import { initializeSocket } from '../socket.js';
 import authService from '../authpage.js';
 import { NavbarDash } from '@/components/NavbarDashboard';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const LoginPage = () => {
         loginData.contact = emailOrContact;
       }
 
-      const response = await axios.post('http://localhost:8000/api/v2/users/login', loginData);
+      const response = await axios.post(`${BACKEND_URL}/api/v2/users/login`, loginData);
       const userData = response.data.data.user;
       const accessToken = response.data.data.accessToken;
 

@@ -12,6 +12,7 @@ import {NavbarDash} from '../components/NavbarDashboard.jsx';
 
 import { getSocket, initializeSocket } from '../socket.js';
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AlertsPage = () => {
   const navigate = useNavigate();
@@ -135,7 +136,7 @@ const AlertsPage = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.get(`http://localhost:8000/api/v2/alerts/region/${region}`, {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/alerts/region/${region}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

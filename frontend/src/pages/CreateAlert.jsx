@@ -20,6 +20,8 @@ import { Badge } from '@/components/ui/badge.jsx';
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import { getSocket, initializeSocket } from "../socket.js";
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 const CreateAlertPage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(authService.getUser());
@@ -34,6 +36,7 @@ const CreateAlertPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccess] = useState('');
+
 
   useEffect(() => {
     const unsubscribe = authService.subscribe((updatedUser) => {
@@ -105,7 +108,7 @@ const CreateAlertPage = () => {
     try {
       
       
-      const response = await axios.post('http://localhost:8000/api/v2/alerts/create', alertData,
+      const response = await axios.post(`${BACKEND_URL}/api/v2/alerts/create`, alertData,
         {
           headers: {
             Authorization: `Bearer ${user.accessToken}`, 

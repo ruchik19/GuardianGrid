@@ -31,6 +31,7 @@ import {
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import { getSocket, initializeSocket } from '../socket.js';
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ManageContactsPage = () => {
   const navigate = useNavigate();
@@ -92,7 +93,7 @@ const ManageContactsPage = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.get('http://localhost:8000/api/v2/contacts/my-contacts', {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/contacts/my-contacts`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -188,7 +189,7 @@ const ManageContactsPage = () => {
         regions: newRegions,
       };
 
-      const response = await axios.post('http://localhost:8000/api/v2/contacts/create', contactData, {
+      const response = await axios.post(`${BACKEND_URL}/api/v2/contacts/create`, contactData, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`
         }
@@ -213,7 +214,7 @@ const ManageContactsPage = () => {
     setError('');
     setSuccess('');
     try {
-      await axios.delete(`http://localhost:8000/api/v2/contacts/delete/${contactId}`, {
+      await axios.delete(`${BACKEND_URL}/api/v2/contacts/delete/${contactId}`, {
         headers: {
           Authorization: `Bearer ${user.accessToken}`
         }

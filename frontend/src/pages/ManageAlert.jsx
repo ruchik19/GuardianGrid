@@ -13,6 +13,7 @@ import {
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import { getSocket, initializeSocket } from '../socket.js';
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ManageAlertsPage = () => {
   const navigate = useNavigate();
@@ -67,7 +68,7 @@ const ManageAlertsPage = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.get('http://localhost:8000/api/v2/alerts/my-alerts', {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/alerts/my-alerts`, {
         headers: {
           Authorization: `Bearer ${token}` 
         }
@@ -145,7 +146,7 @@ const ManageAlertsPage = () => {
     setError(''); 
     setSuccess(''); 
     try {
-      await axios.delete(`http://localhost:8000/api/v2/alerts/delete/${alertId}`, {
+      await axios.delete(`${BACKEND_URL}/api/v2/alerts/delete/${alertId}`, {
         headers: {
           Authorization: `Bearer ${user.accessToken}` 
         }
@@ -167,7 +168,7 @@ const ManageAlertsPage = () => {
     setError('');
     setSuccess('');
     try {
-      const response = await axios.put(`http://localhost:8000/api/v2/alerts/deactivate/${alertId}`, { isActive: !currentStatus }, {
+      const response = await axios.put(`${BACKEND_URL}/api/v2/alerts/deactivate/${alertId}`, { isActive: !currentStatus }, {
         headers: {
           Authorization: `Bearer ${user.accessToken}` 
         }

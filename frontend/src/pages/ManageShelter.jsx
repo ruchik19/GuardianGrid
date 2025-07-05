@@ -31,7 +31,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog.jsx';
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
-import authService from '../authpage.js'; 
+import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ManageSheltersPage = () => {
   const navigate = useNavigate();
@@ -111,7 +112,7 @@ const ManageSheltersPage = () => {
     setErrorMessage('');
     setSuccessMessage('');
     try {
-      const response = await axios.get('http://localhost:8000/api/v2/shelters/my-shelter', {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/shelters/my-shelter`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setShelters(response.data.data);
@@ -228,12 +229,12 @@ const ManageSheltersPage = () => {
       };
 
       if (isEditing) {
-        response = await axios.patch(`http://localhost:8000/api/v2/shelters/update/${currentEditingShelterId}`, payload, {
+        response = await axios.patch(`${BACKEND_URL}/api/v2/shelters/update/${currentEditingShelterId}`, payload, {
           headers: { Authorization: `Bearer ${user.accessToken}` }
         });
         setSuccessMessage('Shelter updated successfully!');
       } else {
-        response = await axios.post('http://localhost:8000/api/v2/shelters/create', payload, {
+        response = await axios.post(`${BACKEND_URL}/api/v2/shelters/create`, payload, {
           headers: { Authorization: `Bearer ${user.accessToken}` }
         });
         setSuccessMessage('Shelter added successfully!');
@@ -307,7 +308,7 @@ const ManageSheltersPage = () => {
       return;
     }
     try {
-      await axios.delete(`http://localhost:8000/api/v2/shelters/delete/${shelterId}`, {
+      await axios.delete(`${BACKEND_URL}/api/v2/shelters/delete/${shelterId}`, {
         headers: { Authorization: `Bearer ${user.accessToken}` }
       });
       setSuccessMessage('Shelter deleted successfully!');

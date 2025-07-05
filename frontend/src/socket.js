@@ -1,5 +1,6 @@
 
 import { io } from 'socket.io-client';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 let socketInstance = null;
 let connectedOnce = false;
@@ -17,7 +18,7 @@ export const initializeSocket = (user) => {
   }
 
   if (!socketInstance) {
-    socketInstance = io('http://localhost:8000', {
+    socketInstance = io(`${BACKEND_URL}`, {
       transports: ['websocket'],
       autoConnect: true,
       reconnection: true,

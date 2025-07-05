@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { getSocket, initializeSocket } from "../socket.js";
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 if (typeof window !== 'undefined') {
     localStorage.debug = 'socket.io-client:*';
@@ -247,7 +248,7 @@ const Dashboard = () => {
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:8000/api/v2/weatherdata/weather?region=${encodeURIComponent(city.trim())}`,{
+      const response = await axios.get(`${BACKEND_URL}/api/v2/weatherdata/weather?region=${encodeURIComponent(city.trim())}`,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -400,14 +401,14 @@ const Dashboard = () => {
           </Card>
         )}
         {user?.role === 'armyofficial' && (
-            <Card className="bg-gray-800 text-white shadow-lg rounded-lg p-5 md:col-span-full lg:col-span-2 hover:border-2 hover:border-amber-100 border-cyan-500"> {/* Spans across 2 columns on larger screens */}
+            <Card className="bg-gray-800 text-white shadow-lg rounded-lg p-5 md:col-span-full lg:col-span-2 hover:border-2 hover:border-amber-100 border-cyan-500">
                 <CardHeader className="">
                     <CardTitle className="text-lg font-semibold flex items-center">
                         <Megaphone size={20} className="text-teal-600 mr-2" /> Army Official Actions
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="pt-2">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"> {/* Inner grid for buttons */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4"> 
                         <Button asChild variant="default" className="justify-center bg-orange-600 hover:bg-orange-700  text-white font-bold py-2 px-4 rounded-md shadow-md transition-all duration-200">
                             <Link to="/alerts/create" className="flex items-center"><PlusCircle size={20} className="mr-2" /> Create Alert</Link>
                         </Button>

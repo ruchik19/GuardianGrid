@@ -12,6 +12,8 @@ import {
 } from '@/components/ui/alert.jsx';
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const GuidesPage = () => {
   const navigate = useNavigate();
@@ -56,7 +58,7 @@ const GuidesPage = () => {
     setError('');
     setIsLoading(true);
     try {
-      const response = await axios.get('http://localhost:8000/api/v2/guides', {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/guides`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (Array.isArray(response.data.data)) {
@@ -81,7 +83,7 @@ const GuidesPage = () => {
     setSelectedGuideContent(null); 
     try {
 
-      const response = await axios.get(`http://localhost:8000/api/v2/guides/${guideId}`, {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/guides/${guideId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       if (response.data && response.data.data) {

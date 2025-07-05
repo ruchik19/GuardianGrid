@@ -10,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.j
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.jsx';
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import authService from '../authpage.js'; 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const ProfilePage = () => {
         setIsLoading(false);
         return;
       }
-      const response = await axios.get('http://localhost:8000/api/v2/users/current-user', {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/users/current-user`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const userData = response.data.data;
@@ -135,7 +136,7 @@ const ProfilePage = () => {
     }
 
     try {
-      const response = await axios.patch('http://localhost:8000/api/v2/users/update-account', updateData, {
+      const response = await axios.patch(`${BACKEND_URL}/api/v2/users/update-account`, updateData, {
         headers: { Authorization: `Bearer ${user.accessToken}` }
       });
       setSuccessMessage('Account details updated successfully!');

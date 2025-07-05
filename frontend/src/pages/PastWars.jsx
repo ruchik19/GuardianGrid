@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/alert.jsx';
 import {NavbarDash} from '../components/NavbarDashboard.jsx';
 import authService from '../authpage.js';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const PastWarsPage = () => {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ const PastWarsPage = () => {
 
     try {
 
-      const response = await axios.get(`http://localhost:8000/api/v2/pastwars/getwar?warName=${encodeURIComponent(warName.trim())}`,
+      const response = await axios.get(`${BACKEND_URL}/api/v2/pastwars/getwar?warName=${encodeURIComponent(warName.trim())}`,
 
         {
           headers: {

@@ -14,6 +14,7 @@ import {
   SelectValue,
 } from '@/components/ui/select.jsx';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert.jsx';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 import {Navbar} from '../components/Navbar.jsx';
 
@@ -119,7 +120,7 @@ const SignUpPage = () => {
     }
 
     try {
-        const response = await axios.post('http://localhost:8000/api/v2/users/register', userData);
+        const response = await axios.post(`${BACKEND_URL}/api/v2/users/register`, userData);
 
         setSuccess('Registration successful! Redirecting to login...');
         setTimeout(() => {

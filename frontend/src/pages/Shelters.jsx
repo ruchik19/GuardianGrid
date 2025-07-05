@@ -24,6 +24,7 @@ const REGION_COORDINATES = {
   hyderabad: [17.3850, 78.4867],
   global: [20.5937, 78.9629], 
 };
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const DEFAULT_MAP_CENTER = REGION_COORDINATES.global;
 const DEFAULT_ZOOM = 6;
@@ -93,7 +94,7 @@ const SheltersPage = () => {
         return;
       }
 
-      const response = await axios.get(`http://localhost:8000/api/v2/shelters/region/${encodeURIComponent(region)}`, {
+      const response = await axios.get(`${BACKEND_URL}/api/v2/shelters/region/${encodeURIComponent(region)}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

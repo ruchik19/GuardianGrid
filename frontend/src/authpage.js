@@ -1,6 +1,7 @@
 import axios from 'axios';
 const listeners = new Set();
 let currentUser = null; 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const getInitialUser = () => {
     try {
@@ -64,7 +65,7 @@ const authService = {
         }
 
         try {
-            const response = await axios.get('http://localhost:8000/api/v2/users/current-user', {
+            const response = await axios.get(`${BACKEND_URL}/api/v2/users/current-user`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const updatedUserData = response.data.data;

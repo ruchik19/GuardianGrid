@@ -9,10 +9,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu.jsx';
 import { Sun, Moon, Home, BellRing, MapPin, BookText, Archive, Users, User2, LogOut} from 'lucide-react';
 import  { getSocket, disconnectSocket, initializeSocket  } from '../socket.js';
 import authService from "../authpage.js";
+
 
 const NavbarDash = () => {
   const navigate = useNavigate();
@@ -102,9 +103,9 @@ const NavbarDash = () => {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-            <div className="navbar hidden lg:flex justify-center space-x-12 items-center rounded-2xl ">
-                <button><Link to="/login" className="mt-3 py-3 px-4 border-white border-2 rounded-md text-2xl">Sign In</Link></button>
-                <button><Link to="/signup" className="mt-3 bg-gradient-to-r from-slate-500 to-cyan-900 py-2 px-3 rounded-md te">Create an Account</Link></button>
+            <div className="navbar hidden lg:flex justify-center space-x-8 items-center rounded-2xl ">
+                <Button className="button py-6 px-3 bg-transparent text-white border-white border-2 rounded-2xl text-2xl"><Link to="/login" >Sign In</Link></Button>
+                <Button className="button bg-gradient-to-l from-cyan-500 to-cyan-900 py-6 px-3 rounded-2xl text-2xl mr-5"><Link to="/signup" >Create an Account</Link></Button>
             </div>
         )}
         </div>

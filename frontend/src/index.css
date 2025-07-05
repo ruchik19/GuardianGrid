@@ -128,10 +128,11 @@
 
 }
 
-.navbar a:hover{
+.button:hover{
   background-color: darkcyan;
   color: rgb(10, 8, 8);
-  font-size: x-large;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 .navbar li:hover{
   color: rgb(57, 175, 179);

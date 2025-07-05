@@ -103,8 +103,8 @@ const NavbarDash = () => {
           </DropdownMenu>
         ) : (
             <div className="navbar hidden lg:flex justify-center space-x-12 items-center rounded-2xl ">
-                <a href="http://localhost:5173/login" className="py-2 px-3 border-white border-2 rounded-2xl text-xl">Sign In</a>
-                <a href="http://localhost:5173/signup" className="bg-gradient-to-l from-cyan-500 to-cyan-900 py-2 px-3 rounded-2xl text-xl ">Create an Account</a>
+                <button><Link to="/login" className="mt-3 py-3 px-4 border-white border-2 rounded-md text-2xl">Sign In</Link></button>
+                <button><Link to="/signup" className="mt-3 bg-gradient-to-r from-slate-500 to-cyan-900 py-2 px-3 rounded-md te">Create an Account</Link></button>
             </div>
         )}
         </div>

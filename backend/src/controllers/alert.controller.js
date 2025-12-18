@@ -37,16 +37,14 @@ const sendAlert = asyncHandler(async(req,res)=> {
     });
 
     console.log("Alert created in DB:", newAlert);
-    if (!io) {
-        console.error("Socket.IO instance (io) is null in alert.controller.js!");
-    } else {
-        console.log(`Attempting to emit new_alert_in_region for regions: ${processedTargetRegions.join(', ')}`);
+    
+    console.log(`Attempting to emit new_alert_in_region for regions: ${processedTargetRegions.join(', ')}`);
         for (const region of processedTargetRegions) {
             io.to(region).emit('new_alert_in_region', newAlert);
             console.log(`Emitted 'new_alert_in_region' to room: ${region} with alert ID: ${newAlert._id}`);
         }
     io.emit('global_alert_feed_update', { action: 'created', alert: newAlert });
-    }
+    
     return res
     .status(201)
     .json(new ApiResponse (

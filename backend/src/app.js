@@ -6,6 +6,10 @@ import cookieParser from "cookie-parser";
 import { setSocketInstance as setAlertSocket } from "./controllers/alert.controller.js";
 import { setSocketInstance as setShelterSocket } from "./controllers/shelter.controller.js";
 import { setSocketInstance as setEmergencyContactSocket } from "./controllers/Emergencycontact.controller.js";
+import axios from "axios";
+
+// This applies to every axios call, including your getWarDetails controller
+axios.defaults.headers.common['User-Agent'] = 'GuardianGrid/1.0 (contact@yourdomain.com)';
 
 const app = express();
 
